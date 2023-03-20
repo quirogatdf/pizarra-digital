@@ -1,0 +1,20 @@
+[
+  {
+    "id" : 0,
+    "username" :"admin",
+    "password" :"admin",
+    "isAdmin": true
+  },
+  {
+    "id" : 1, 
+    "username" : "entrada",
+    "password" : "cpcl",
+    "isAdmin": true
+  },
+  {
+    "id" : 2,
+    "username" : "preceptor",
+    "password" : "comandante",
+    "isAdmin": false
+  }
+]

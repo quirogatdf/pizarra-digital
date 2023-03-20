@@ -1,0 +1,26 @@
+.body{
+  display: flex;
+  /* Alinear en el centro de X */
+  justify-content: center;
+  /* Alinear contenido en el centro de Y*/
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+.login{
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.input-login{
+  width: 80%;
+}
+.btn-login {
+  margin-top: 3%;
+  width: 50%;
+}
+
+.spinner{
+  margin: 0 auto;
+}

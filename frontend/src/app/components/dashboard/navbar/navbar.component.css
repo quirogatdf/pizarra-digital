@@ -1,0 +1,35 @@
+nav {
+  
+  padding: 0;
+  
+}
+a{
+  color: white;
+  text-decoration: none;
+}
+ul {
+  
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 2rem;
+  justify-content: space-between;
+  list-style-type:none;
+  margin-left: 0em;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+  
+  
+}
+.menu-principal {
+  display: flex;
+  flex-direction: row;
+}
+.menu-secundario {
+  margin-right: 1em;
+  cursor:pointer;
+}
+li{
+  margin-left: 2em;
+}
