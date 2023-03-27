@@ -23,7 +23,7 @@ export interface PeriodicElement {
   styleUrls: ['./docente.component.css']
 })
 export class DocenteComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'dni', 'apellido', 'operaciones'];
+  displayedColumns: string[] = ['id', 'dni', 'apellido', 'fechaNacimiento', 'operaciones'];
   docentes: Docente[] = [];
   dataSource!: MatTableDataSource<Docente>;
   @ViewChild(MatSort) matSort!: MatSort;
@@ -37,29 +37,35 @@ export class DocenteComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarDocente();
-
-
   }
 
-  addData(enteranimation: any, exitanimation: any,code:any) {
+  addData(enteranimation: any, exitanimation: any, code: any) {
     this.dialog.open(AddDocenteComponent,)
-
   };
-  /*Aplicar filtro */
 
+  addEditDocente(id?: number) {
+    const dialogref = this.dialog.open(AddDocenteComponent, {
+      width: '50%',
+      disableClose: true,
+      data: {id: id}
+    });
+    dialogref.afterClosed().subscribe(result => {
+      if (result) {
+        this.cargarDocente();
+      }
+    })
+  }
+
+  /*Aplicar filtro */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  viewDetail(id: number) {
-    alert(id)
-  }
-  
+
 
   /* Borrar un docente */
   delete(id: number) {
     if (confirm("Realmente quiere borrarlo?")) {
-      this.cargarDocente();
       this._docenteService.delete(id).subscribe(res => {
         this.snackBar.open('El usuario se elimino correctamente', '', {
           duration: 3000,
@@ -67,6 +73,7 @@ export class DocenteComponent implements OnInit {
           verticalPosition: 'bottom'
         })
 
+        this.cargarDocente();
       })
     }
 
@@ -82,4 +89,5 @@ export class DocenteComponent implements OnInit {
 
     })
   }
+
 }

@@ -8,6 +8,7 @@ module.exports = (sequelize, type) => {
     dni: type.STRING(8),
     apellido: type.STRING(50),
     nombre: type.STRING(50),
+    fecha_nacimiento: type.DATE,
   },
     {
       sequelize,

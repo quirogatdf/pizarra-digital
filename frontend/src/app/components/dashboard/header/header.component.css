@@ -17,12 +17,12 @@ h1{
   color: #FFFFFF;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .slide{
-    height: 20vh;
+    height: 10vh;
   }
   h1{
-    font-size: 3em;
+    font-size: 2.5em;
   }
   
 }

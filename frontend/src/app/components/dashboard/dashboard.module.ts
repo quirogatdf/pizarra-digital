@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { AddDocenteComponent } from './docente/add-docente/add-docente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailDocenteComponent } from './docente/detail-docente/detail-docente.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReporteComponent,
     NavbarComponent,
     HeaderComponent,
-    AddDocenteComponent
+    AddDocenteComponent,
+    DetailDocenteComponent
   ],
   imports: [
     FormsModule,

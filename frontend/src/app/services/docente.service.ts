@@ -8,14 +8,15 @@ import { Docente } from '../interface/docente';
   providedIn: 'root'
 })
 export class DocenteService {
-  baseURL = `http://localhost:3000/api/docente`
+  baseURL =`https://pizarra-backend.onrender.com/api/docente`
+  //baseURL = `http://localhost:3000/api/docente`
 
   constructor(
     private http: HttpClient
   ) { }
 
-  add(docente: Docente[]): Observable<Docente[]> {
-    return this.http.post<Docente[]>(`${this.baseURL}/add`, docente)
+  add(docente: Docente): Observable<void> {
+    return this.http.post<void>(`${this.baseURL}/add`, docente)
   }
 
   getAllData(): Observable<Docente[]> {
@@ -26,5 +27,12 @@ export class DocenteService {
     return this.http.delete<Docente[]>(`${this.baseURL}/delete/${id}`)
   }
 
+  getById(id:number): Observable<Docente>{
+    return this.http.get<Docente>(`${this.baseURL}/${id}}`)
+  }
+
+  update(id: number, docente: Docente): Observable<void> {
+    return this.http.put<void>(`${this.baseURL}/update/${id}`, docente)
+  }
 
 }
