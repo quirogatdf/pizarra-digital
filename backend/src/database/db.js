@@ -5,7 +5,7 @@ const sequelize = new Sequelize(DB.DATABASE, DB.USERNAME, DB.PASSWORD,{
         host: DB.HOST,
         dialect: DB.DIALECT,
         logging: false,
-        query: {raw:true},
+        // query: {raw:true},
     }
 );
 async function validar_conexion() {

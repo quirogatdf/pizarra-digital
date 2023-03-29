@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Docente } from 'src/app/interface/docente';
@@ -16,21 +15,20 @@ import { DateAdapter } from '@angular/material/core';
 })
 export class AddDocenteComponent implements OnInit {
   @Output() onAddDocente: EventEmitter<Docente> = new EventEmitter();
+  @ViewChild(MatSort) matSort!: MatSort;
   docenteForm: FormGroup;
   dataSource!: MatTableDataSource<Docente>;
   docentes: Docente[] = [];
-  @ViewChild(MatSort) matSort!: MatSort;
   loading: boolean = false;
   operation: string = 'Agregar ';
   id: number | undefined;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private _dateAdapter: DateAdapter<Date>,
     private _formBuilder: FormBuilder,
     private _docenteService: DocenteService,
-    private location: Location,
     public dialogref: MatDialogRef<AddDocenteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     /*Format Date */
     this._dateAdapter.setLocale('es-AR')
@@ -81,7 +79,7 @@ export class AddDocenteComponent implements OnInit {
       dni: this.docenteForm.value.dni,
       apellido: this.docenteForm.value.apellido,
       nombre: this.docenteForm.value.nombre,
-      fecha_nacimiento: this.docenteForm.value.fechaNacimiento.toISOString().slice(0, 10)
+      fecha_nacimiento: new Date(this.docenteForm.value.fechaNacimiento)
     }
     /* Mostrar spinner mientras se guarda en la BD */
     this.loading = true;

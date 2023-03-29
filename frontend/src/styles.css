@@ -11,3 +11,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
    
   } 
+  .container{
+    margin: 3em;
+    padding-bottom: 2em;
+  
+    
+  
+  }

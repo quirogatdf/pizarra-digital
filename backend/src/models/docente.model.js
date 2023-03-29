@@ -1,5 +1,5 @@
 module.exports = (sequelize, type) => {
-  return sequelize.define('Docentes', {
+  return sequelize.define('docentes', {
     id: {
       type: type.INTEGER,
       primaryKey: true,
@@ -13,6 +13,7 @@ module.exports = (sequelize, type) => {
     {
       sequelize,
       timestamps: false,
+      raw:false,
     }
   )
 }

@@ -7,16 +7,6 @@ import { Docente } from 'src/app/interface/docente';
 import { DocenteService } from 'src/app/services/docente.service';
 import { AddDocenteComponent } from './add-docente/add-docente.component';
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-
-
 @Component({
   selector: 'app-docente',
   templateUrl: './docente.component.html',
@@ -38,16 +28,12 @@ export class DocenteComponent implements OnInit {
   ngOnInit(): void {
     this.cargarDocente();
   }
-
-  addData(enteranimation: any, exitanimation: any, code: any) {
-    this.dialog.open(AddDocenteComponent,)
-  };
-
+ /* Abrir modal para editar o agregar */
   addEditDocente(id?: number) {
     const dialogref = this.dialog.open(AddDocenteComponent, {
       width: '50%',
       disableClose: true,
-      data: {id: id}
+      data: { id: id }
     });
     dialogref.afterClosed().subscribe(result => {
       if (result) {
@@ -78,8 +64,7 @@ export class DocenteComponent implements OnInit {
     }
 
   }
-
-
+  /* Mostrar todos los docentes */
   cargarDocente() {
     this._docenteService.getAllData().subscribe(data => {
       this.docentes = data;

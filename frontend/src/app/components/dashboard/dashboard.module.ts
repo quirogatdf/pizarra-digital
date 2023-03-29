@@ -11,7 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { AddDocenteComponent } from './docente/add-docente/add-docente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DetailDocenteComponent } from './docente/detail-docente/detail-docente.component';
+import { NovedadComponent } from './novedad/novedad.component';
+import { AddEditNovedadComponent } from './novedad/add-edit-novedad/add-edit-novedad.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DetailDocenteComponent } from './docente/detail-docente/detail-docente.
     NavbarComponent,
     HeaderComponent,
     AddDocenteComponent,
-    DetailDocenteComponent
+    NovedadComponent,
+    AddEditNovedadComponent
   ],
   imports: [
     FormsModule,

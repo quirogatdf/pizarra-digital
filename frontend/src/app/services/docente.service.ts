@@ -8,8 +8,8 @@ import { Docente } from '../interface/docente';
   providedIn: 'root'
 })
 export class DocenteService {
-  baseURL =`https://pizarra-backend.onrender.com/api/docente`
-  //baseURL = `http://localhost:3000/api/docente`
+  //baseURL =`https://pizarra-backend.onrender.com/api/docente`
+  baseURL = `http://localhost:3000/api/docente`
 
   constructor(
     private http: HttpClient

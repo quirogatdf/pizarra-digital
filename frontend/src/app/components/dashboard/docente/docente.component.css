@@ -1,10 +1,4 @@
-.container{
-  margin: 3em;
-  padding-bottom: 2em;
 
-  
-
-}
 .container-table{
   display: flex;
   flex-direction: column;

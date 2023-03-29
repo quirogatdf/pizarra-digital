@@ -1,8 +1,11 @@
 export interface Novedad {
-  id: number,
-  doceteId: string,
-  fechaInicio: Date,
-  fechaFin: Date,
-  Observaciones: String,
-  isActive: boolean
+  id?: number,
+  docenteId?: number,
+  fecha_inicio: Date,
+  fecha_fin: Date,
+  observaciones: String,
+  docente: {
+    apellido: string,
+    nombre: string
+  }
 }

@@ -1,0 +1,79 @@
+<mat-toolbar color="primary">
+  <span>Novedades 2023</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="container">
+
+  <mat-form-field>
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Búsqueda por apellido" #input>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="addEditNovedad()" class="demo-button">
+    Agregar novedad
+  </button>
+
+  <div class="container-table mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id" style="width: 10px;">
+        <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label"> Id: </span>
+          {{element.id}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- DocenteId Column -->
+      <ng-container matColumnDef="docenteId">
+        <mat-header-cell *matHeaderCellDef> Docente </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Docente</span>
+          {{element.docente.apellido}}, {{element.docente.nombre}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Fecha de Inicio Column -->
+      <ng-container matColumnDef="fechaInicio">
+        <mat-header-cell *matHeaderCellDef> Fecha de Inicio </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Fecha de Inicio:</span>
+          <span>{{element.fecha_inicio | date:'dd/MM/yyyy'}}</span>
+        </mat-cell>
+      </ng-container>
+      <!-- Fecha de Fin Column -->
+      <ng-container matColumnDef="fechaFin">
+        <mat-header-cell *matHeaderCellDef> Fecha de Fin</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Fecha de Fin:</span>
+          <span>{{element.fecha_fin | date:'dd/MM/yyyy'}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="observaciones">
+        <mat-header-cell *matHeaderCellDef> Observaciones</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Observaciones:</span>
+          <span>{{element.observaciones}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="operaciones">
+        <mat-header-cell *matHeaderCellDef> Operaciones </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="mobile-label">Operaciones:</span>
+          <!-- <mat-icon (click)="viewDetail(element.id)">info_outline</mat-icon> -->
+          <mat-icon (click)="delete(element.id)">delete_outline</mat-icon>
+          <mat-icon (click)="addEditNovedad(element.id)">edit_outline</mat-icon>
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
