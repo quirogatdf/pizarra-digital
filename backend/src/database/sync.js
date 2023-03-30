@@ -13,7 +13,8 @@ const Docentes = DocentesModel(sequelize, Sequelize);
 //   foreignKey:'docenteId'
 // });
 Novedades.belongsTo(Docentes, {
-  foreignKey:'docenteId'
+  foreignKey:'docenteId',
+  onDelete: 'cascade',
 });
 // Novedades.hasMany(Docentes, { foreignKey: 'docenteId' });
 // Docentes.belongsTo(Novedades);

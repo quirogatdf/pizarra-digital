@@ -24,4 +24,11 @@ export class NovedadService {
   getById(id: number): Observable<Novedad> {
     return this.http.get<Novedad>(`${this.baseURL}/${id}}`)
   }
+  delete(id: number): Observable<Novedad> {
+    return this.http.delete<Novedad>(`${this.baseURL}/delete/${id}`)
+  }
+
+  update(id: number, novedad: Novedad): Observable<void> {
+    return this.http.put<void>(`${this.baseURL}/update/${id}`, novedad)
+  }
 }

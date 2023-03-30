@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { NovedadService } from 'src/app/services/novedad.service';
@@ -21,7 +22,10 @@ export class AddEditNovedadComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _novedadService: NovedadService,
     public dialogref: MatDialogRef<AddEditNovedadComponent>,
+    private _dateAdapter: DateAdapter<Date>,
   ) {
+    this._dateAdapter.setLocale('es-AR')
+
     this.novedadForm = this._formBuilder.group({
       docenteId: ['', Validators.required],
       fechaInicio: ['', Validators.required],
@@ -41,7 +45,7 @@ export class AddEditNovedadComponent implements OnInit {
       this.operation = 'Editar ';
       this.getNovedad(id);
     }
-  
+
   }
 
   getNovedad(id: number) {
@@ -50,13 +54,13 @@ export class AddEditNovedadComponent implements OnInit {
         docenteId: data.docenteId,
         fechaInicio: data.fecha_inicio,
         fechaFin: data.fecha_fin,
-        observaciones : data.observaciones
+        observaciones: data.observaciones
       })
     })
   }
 
-   /* Cerrar Modal */
-   cancel() {
+  /* Cerrar Modal */
+  cancel() {
     this.dialogref.close(false);
   }
 
@@ -80,12 +84,10 @@ export class AddEditNovedadComponent implements OnInit {
     this.loading = true;
 
     if (this.id === undefined) {
-     this._novedadService.add(novedad).subscribe(() => {
-      })
-    };
-    //   // this._novedadService.update(this.id, novedad).subscribe(data => {
-    //   })
-    // }
+      this._novedadService.add(novedad).subscribe(() => { })
+    } else {
+      this._novedadService.update(this.id, novedad).subscribe(data => { console.log(data)})
+    }
     this.loading = false
     this.dialogref.close(true);
 
