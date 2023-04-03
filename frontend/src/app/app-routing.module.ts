@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { UserAccessGuard } from './user-access.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch:'full'
   },
   {
     path: 'login',
@@ -14,11 +15,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./components/dashboard/dashboard.module').then(x => x.DashboardModule)
+    loadChildren: () => import('./components/dashboard/dashboard.module').then(x => x.DashboardModule),
+
+    
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   }
 

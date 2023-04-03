@@ -18,7 +18,7 @@
   </mat-form-field>
 
 
-  <button mat-raised-button (click)="addEditDocente()" class="demo-button">
+  <button *ngIf="!isPreceptor" mat-raised-button (click)="addEditDocente()" class="demo-button">
     Agregar docente
   </button>
   <div class="container-table mat-elevation-z8">
@@ -68,8 +68,8 @@
         <mat-cell *matCellDef="let element">
           <span class="mobile-label">Operaciones:</span>
           <!-- <mat-icon (click)="viewDetail(element.id)">info_outline</mat-icon> -->
-          <mat-icon (click)="delete(element.id)">delete_outline</mat-icon>
-          <mat-icon (click)="addEditDocente(element.id)">edit_outline</mat-icon>
+          <mat-icon *ngIf="!isPreceptor" (click)="delete(element.id)">delete_outline</mat-icon>
+          <mat-icon *ngIf="!isPreceptor" (click)="addEditDocente(element.id)">edit_outline</mat-icon>
           
         </mat-cell>
       </ng-container>

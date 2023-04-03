@@ -10,7 +10,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Búsqueda por apellido" #input>
   </mat-form-field>
 
-  <button mat-raised-button (click)="addEditNovedad()" class="demo-button">
+  <button *ngIf="!isPreceptor" mat-raised-button (click)="addEditNovedad()" class="demo-button">
     Agregar novedad
   </button>
 
@@ -66,8 +66,8 @@
         <mat-cell *matCellDef="let element">
           <span class="mobile-label">Operaciones:</span>
           <!-- <mat-icon (click)="viewDetail(element.id)">info_outline</mat-icon> -->
-          <mat-icon (click)="delete(element.id)">delete_outline</mat-icon>
-          <mat-icon (click)="addEditNovedad(element.id)">edit_outline</mat-icon>
+          <mat-icon *ngIf="!isPreceptor" (click)="delete(element.id)">delete_outline</mat-icon>
+          <mat-icon *ngIf="!isPreceptor" (click)="addEditNovedad(element.id)">edit_outline</mat-icon>
 
         </mat-cell>
       </ng-container>

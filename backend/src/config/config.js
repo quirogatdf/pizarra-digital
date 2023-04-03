@@ -11,10 +11,10 @@ module.exports = {
     SERVER: {
         PORT: process.env.SERVER_PORT || 3000
     },
-    // jwt : {
-    //     key: process.env.PRIVATE_KEY,
-    //     expires_time: process.env.EXPIRES_TIME
-    // },
+    JWT : {
+         key: process.env.PRIVATE_KEY,
+         expires_time: process.env.EXPIRES_TIME
+     }
     // REDIS : {
     //     HOST : process.env.REDIS_HOST,
     //     PORT : process.env.REDIS_PORT

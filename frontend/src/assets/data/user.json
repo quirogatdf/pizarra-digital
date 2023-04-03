@@ -16,5 +16,11 @@
     "username" : "preceptor",
     "password" : "comandante",
     "isAdmin": false
+  },
+  {
+    "id": 3,
+    "username": "mequiroga",
+    "passwowrd": "1234",
+    "isAdmin":true
   }
 ]

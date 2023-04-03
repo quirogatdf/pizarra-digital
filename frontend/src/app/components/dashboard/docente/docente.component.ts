@@ -17,6 +17,7 @@ export class DocenteComponent implements OnInit {
   docentes: Docente[] = [];
   dataSource!: MatTableDataSource<Docente>;
   @ViewChild(MatSort) matSort!: MatSort;
+  isPreceptor = false;
 
   constructor(
     private _docenteService: DocenteService,
@@ -27,6 +28,10 @@ export class DocenteComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarDocente();
+
+    if(localStorage.getItem('username') === 'preceptor'){
+      this.isPreceptor = true;
+    }
   }
  /* Abrir modal para editar o agregar */
   addEditDocente(id?: number) {

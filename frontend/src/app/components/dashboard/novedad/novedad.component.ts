@@ -18,6 +18,7 @@ export class NovedadComponent implements OnInit {
   novedades: Novedad[] = [];
   dataSource!: MatTableDataSource<Novedad>;
   @ViewChild(MatSort) matSort!: MatSort;
+  isPreceptor = false;
 
   constructor(
     private _novedadService: NovedadService,
@@ -30,6 +31,9 @@ export class NovedadComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllNovedades();
+    if(localStorage.getItem('username')==='preceptor'){
+      this.isPreceptor = true;
+    }
   }
   /* Abrir modal para editar o agregar */
   addEditNovedad(id?: number) {

@@ -4,9 +4,11 @@ const { sequelize } = require('./db');
 
 const NovedadesModel = require('../models/novedad.model');
 const DocentesModel = require('../models/docente.model');
+const UsersModel = require('../models/user.models');
 
 const Novedades = NovedadesModel(sequelize, Sequelize);
 const Docentes = DocentesModel(sequelize, Sequelize);
+const Users = UsersModel(sequelize, Sequelize);
 
 
 // Docentes.hasMany(Novedades,{
@@ -25,5 +27,7 @@ sequelize.sync({ force: false }).then(() => {
 });
 module.exports = {
   Novedades,
-  Docentes
+  Docentes,
+  Users
+
 }
