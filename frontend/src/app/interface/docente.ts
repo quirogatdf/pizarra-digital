@@ -3,5 +3,7 @@ export interface Docente{
   dni: string,
   nombre: string,
   apellido: string,
-  fecha_nacimiento: Date,
+  fecha_nacimiento?: Date,
+  telefono?: string,
+  email?: string,
 }

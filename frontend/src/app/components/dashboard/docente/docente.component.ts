@@ -31,6 +31,8 @@ export class DocenteComponent implements OnInit {
 
     if(localStorage.getItem('username') === 'preceptor'){
       this.isPreceptor = true;
+    } else {
+      this.isPreceptor = false;
     }
   }
  /* Abrir modal para editar o agregar */
@@ -46,6 +48,7 @@ export class DocenteComponent implements OnInit {
       }
     })
   }
+
 
   /*Aplicar filtro */
   applyFilter(event: Event) {

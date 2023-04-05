@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -42,21 +42,25 @@ export class LoginComponent implements OnInit {
       username : this.form.value.user,
       password : this.form.value.password
     }
-    this.auth.login(this.usuario).subscribe(data => {
-      if(data.dataUser.username ==='preceptor') {
-
-        localStorage.setItem('username',data.dataUser.username )
-        localStorage.setItem('isAdmin','false')
-      }
-      // this.auth.setToken(data.dataUser.accessToken);
+    this.auth.login(this.usuario).subscribe({
+      next: data => {
+      this.loading = true;
+      localStorage.setItem('username',data.dataUser.username );
       this.router.navigate(['dashboard/']);
+      console.log('data'+ data)
+      },
+      error: error => {
+        this.error(error.error.message)
+      }
+        
+      // this.auth.setToken(data.dataUser.accessToken);
     })
 
   }
 
   /* Metodo error */
-  error() {
-    this.snackBar.open('El nombre de usuario o contraseña son incorrectos', '', {
+  error(msgError: string) {
+    this.snackBar.open(`${msgError}`, '', {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'

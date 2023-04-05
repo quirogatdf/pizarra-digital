@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -34,10 +34,17 @@ export class AddDocenteComponent implements OnInit {
     this._dateAdapter.setLocale('es-AR')
 
     this.docenteForm = this._formBuilder.group({
-      dni: ['', Validators.required],
+      dni: ['', [
+        Validators.required,
+        Validators.pattern('^\\d+$'),
+        Validators.maxLength(8),
+      ]
+      ],
       apellido: ['', Validators.required],
       nombre: ['', Validators.required],
-      fechaNacimiento: [null]
+      fechaNacimiento: [null],
+      telefono: ['', Validators.pattern('^\\d+$')],
+      email: '',
     })
     this.id = data.id;
   }
@@ -45,6 +52,8 @@ export class AddDocenteComponent implements OnInit {
   ngOnInit(): void {
     this.isEdit(this.id)
   }
+
+
   isEdit(id: number | undefined) {
     if (id !== undefined) {
       this.operation = 'Editar ';
@@ -58,7 +67,9 @@ export class AddDocenteComponent implements OnInit {
         dni: data.dni,
         nombre: data.nombre,
         apellido: data.apellido,
-        fechaNacimiento: data.fecha_nacimiento
+        fechaNacimiento: data.fecha_nacimiento,
+        telefono: data.telefono,
+        email: data.email
       })
     })
 
@@ -79,7 +90,9 @@ export class AddDocenteComponent implements OnInit {
       dni: this.docenteForm.value.dni,
       apellido: this.docenteForm.value.apellido,
       nombre: this.docenteForm.value.nombre,
-      fecha_nacimiento: new Date(this.docenteForm.value.fechaNacimiento)
+      fecha_nacimiento: new Date(this.docenteForm.value.fechaNacimiento),
+      telefono: this.docenteForm.value.telefono,
+      email: this.docenteForm.value.email
     }
     /* Mostrar spinner mientras se guarda en la BD */
     this.loading = true;

@@ -33,6 +33,8 @@ export class NovedadComponent implements OnInit {
     this.getAllNovedades();
     if(localStorage.getItem('username')==='preceptor'){
       this.isPreceptor = true;
+    } else {
+      this.isPreceptor = false;
     }
   }
   /* Abrir modal para editar o agregar */

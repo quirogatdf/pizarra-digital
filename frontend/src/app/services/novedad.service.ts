@@ -1,18 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+
 import { Novedad } from '../interface/novedad';
-import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
-export class NovedadService {
-  baseURL = `http://localhost:3000/api/novedad`
 
+export class NovedadService {
+  baseURL: string = '';
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    ) { 
+      this.baseURL = `${environment.baseURL}/novedad`
+    }
   add(novedad: Novedad): Observable<void> {
     return this.http.post<void>(`${this.baseURL}/add`, novedad)
   }

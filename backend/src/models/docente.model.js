@@ -5,15 +5,23 @@ module.exports = (sequelize, type) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    dni: type.STRING(8),
+    dni: {
+      type: type.STRING(8),
+      allowNull: false,
+      validate: {
+        notNull: { msg: 'dni is required' }
+      }
+    },
     apellido: type.STRING(50),
     nombre: type.STRING(50),
     fecha_nacimiento: type.DATE,
+    telefono: type.STRING(25),
+    email: type.STRING(100)
   },
     {
       sequelize,
       timestamps: false,
-      raw:false,
+      raw: false,
     }
   )
 }
